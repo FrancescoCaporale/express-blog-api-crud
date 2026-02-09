@@ -28,7 +28,21 @@ function update(req, res) {
 }
 
 function destroy(req, res) {
-    res.send("Cancellazione del post " + req.params.id);
+    const id = parseInt(req.params.id);
+    const post = posts.find(p => p.id === id);
+
+    if (!post) {
+        return res.status(404).json({
+            error: "Not Found",
+            message: "Post non trovato"
+        });
+    }
+
+    posts.splice(posts.indexOf(post), 1);
+
+    console.log(posts);
+
+    res.sendStatus(204);
 }
 
 module.exports = {
