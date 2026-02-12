@@ -34,6 +34,8 @@ function store(req, res) {
 }
 
 function update(req, res) {
+    console.log(req.params.id);
+    console.log(req.body);
     res.send("Modifica del post " + req.params.id);
 }
 
